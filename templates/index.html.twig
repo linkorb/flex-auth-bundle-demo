@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+    {% if user %}
+        Logged user as {{ user.username }}. <a href="/logout">Logout</a>
+    {% else %}
+        Guest. <a href="/login">Login</a>
+    {% endif %}
+{% endblock %}
