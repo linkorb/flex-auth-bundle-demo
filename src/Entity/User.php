@@ -19,7 +19,9 @@ class User implements UserInterface
      * @var string
      */
     protected $email;
-
+    /**
+     * @var string
+     */
     protected $salt;
     /**
      * Encrypted password. Must be persisted.
@@ -43,7 +45,7 @@ class User implements UserInterface
      */
     public function __construct()
     {
-        $this->roles = array();
+        $this->roles = [];
     }
 
     /**
@@ -98,7 +100,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return $this->roles;
+        return (array) $this->roles;
     }
 
     /**
