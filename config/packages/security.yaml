@@ -1,5 +1,11 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        UserBase\Client\Model\User:
+            algorithm: sha512
+        Symfony\Component\Security\Core\User\User: plaintext
+        App\Entity\User: plaintext
+
     providers:
         users:
             flex_auth: ~
