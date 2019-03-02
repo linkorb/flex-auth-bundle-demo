@@ -5,6 +5,7 @@ security:
             algorithm: sha512
         Symfony\Component\Security\Core\User\User: plaintext
         App\Entity\User: plaintext
+        #Symfony\Component\Security\Core\User\UserInterface: "%env(FLEX_AUTH_ENCODER)%"
 
     providers:
         users:
