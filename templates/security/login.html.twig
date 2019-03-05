@@ -33,4 +33,39 @@
         Sign in
     </button>
 </form>
+
+
+<div class="api" id="api">
+    Login via api by JWT
+    <input type="text" placeholder="username"/>
+    <button type="button">Send ajax to /api/login</button>
+</div>
+
+<script>
+    var api = document.querySelector('#api')
+    api.querySelector('button').addEventListener('click', () => {
+        var username = api.querySelector('input').value
+        if (username) {
+            fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username: username})
+            }).then((response) => {
+                response.json().then((json) => {
+                    var token = json.token
+                    location.href = '/?jwt=' + token
+                })
+            })
+        }
+    })
+</script>
+
+<style>
+    .api {
+        margin-top: 15px;
+    }
+</style>
 {% endblock %}
