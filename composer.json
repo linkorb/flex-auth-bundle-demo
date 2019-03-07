@@ -7,7 +7,8 @@
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^1.10",
         "doctrine/orm": "^2.6",
-        "linkorb/flex-auth-bundle": "dev-master",
+        "firebase/php-jwt": "dev-master",
+        "linkorb/flex-auth-bundle": "master@dev",
         "symfony/console": "4.2.*",
         "symfony/dotenv": "4.2.*",
         "symfony/flex": "^1.1",
@@ -15,7 +16,7 @@
         "symfony/security-bundle": "4.2.*",
         "symfony/twig-bundle": "4.2.*",
         "symfony/yaml": "4.2.*",
-        "userbase/client": "^1.5"
+        "userbase/client": "dev-master"
     },
     "config": {
         "preferred-install": {
@@ -70,9 +71,14 @@
         {
             "type": "path",
             "url": "/var/www/flex-auth-bundle"
+        },
+        {
+            "type": "path",
+            "url": "/var/www/flex-auth"
         }
     ],
     "require-dev": {
         "symfony/maker-bundle": "^1.11"
-    }
+    },
+    "minimum-stability": "dev"
 }

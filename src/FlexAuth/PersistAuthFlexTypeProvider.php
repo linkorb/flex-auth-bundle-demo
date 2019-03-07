@@ -3,8 +3,8 @@
 namespace App\FlexAuth;
 
 use App\Entity\User;
-use FlexAuthBundle\Security\AuthFlexTypeProviderFactory;
-use FlexAuthBundle\Security\AuthFlexTypeProviderInterface;
+use FlexAuth\AuthFlexTypeProviderFactory;
+use FlexAuth\AuthFlexTypeProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

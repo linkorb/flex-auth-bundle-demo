@@ -20,7 +20,7 @@ security:
                 entry_point: App\Security\LoginFormAuthenticator
                 authenticators:
                     - App\Security\LoginFormAuthenticator
-                    - FlexAuthBundle\Security\Type\JWT\JWTTokenAuthenticator
+                    - FlexAuth\Type\JWT\JWTTokenAuthenticator
             logout:
                 path:   app_logout
             # activate different ways to authenticate

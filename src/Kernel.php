@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
-use FlexAuthBundle\Security\AuthFlexTypeProviderInterface;
+use FlexAuth\AuthFlexTypeProviderInterface;
 
 class Kernel extends BaseKernel implements CompilerPassInterface
 {
