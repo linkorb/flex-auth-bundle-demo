@@ -66,6 +66,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/linkorb/userbase-client-php"
+        },
+        {
+            "type": "path",
+            "url": "/var/www/flex-auth-bundle"
         }
     ],
     "require-dev": {

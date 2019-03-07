@@ -3,6 +3,8 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+
+{% if type != 'jwt' %}
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -34,12 +36,14 @@
     </button>
 </form>
 
-
+{% else %}
 <div class="api" id="api">
     Login via api by JWT
     <input type="text" placeholder="username"/>
     <button type="button">Send ajax to /api/login</button>
 </div>
+
+{% endif %}
 
 <script>
     var api = document.querySelector('#api')
