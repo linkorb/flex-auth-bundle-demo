@@ -22,9 +22,8 @@ class ApiController extends AbstractController
     public function loginAction(Request $request, JWTTokenAuthenticator $JWTTokenAuthenticator) {
         $content = $request->getContent();
         $content = json_decode($content);
+
         /** @var JWTTokenAuthenticator $JWTTokenAuthenticator */
-        //$JWTTokenAuthenticator = $this->container->get(JWTTokenAuthenticator::class);
-        // check password $content->password
         $user = new User($content->username, null, ['ROLE_USER']);
         $token = $JWTTokenAuthenticator->createTokenFromUser($user);
 
