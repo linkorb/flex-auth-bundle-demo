@@ -7,8 +7,8 @@
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^1.10",
         "doctrine/orm": "^2.6",
-        "firebase/php-jwt": "dev-master",
-        "linkorb/flex-auth-bundle": "master@dev",
+        "firebase/php-jwt": "^5.0.0",
+        "linkorb/flex-auth-bundle": "^1.0.0",
         "symfony/console": "4.2.*",
         "symfony/dotenv": "4.2.*",
         "symfony/flex": "^1.1",
@@ -16,7 +16,7 @@
         "symfony/security-bundle": "4.2.*",
         "symfony/twig-bundle": "4.2.*",
         "symfony/yaml": "4.2.*",
-        "userbase/client": "dev-master"
+        "userbase/client": "^1.5"
     },
     "config": {
         "preferred-install": {
@@ -63,22 +63,7 @@
             "require": "4.2.*"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/linkorb/userbase-client-php"
-        },
-        {
-            "type": "path",
-            "url": "/var/www/flex-auth-bundle"
-        },
-        {
-            "type": "path",
-            "url": "/var/www/flex-auth"
-        }
-    ],
     "require-dev": {
         "symfony/maker-bundle": "^1.11"
-    },
-    "minimum-stability": "dev"
+    }
 }
