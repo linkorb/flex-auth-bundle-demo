@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+    Flex auth type
+    <table>
+        {% for key, value in selectedType %}
+        <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div>
+        {% if user %}
+            Logged user as {{ user.username }}. <a href="/logout">Logout</a>
+        {% else %}
+            <form action="/" method="POST">
+                Select flex auth type
+                <select name="type" onchange="event.target.parentElement.submit()">
+                    <option></option>
+                    {% for key, type in types %}
+                        <option value="{{ key }}">{{ key }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+
+            <div>
+                Guest. <a href="{% if isJWT  %}/{% else %}/login{% endif %}">Login</a>
+            </div>
+        {% endif %}
+    </div>
+
+
+    <style>
+        table {
+            border: 1px solid #aaaeb2;
+        }
+    </style>
+{% endblock %}
