@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\FlexAuth\PersistAuthFlexTypeProvider;
+use App\FlexAuth\PersistFlexAuthTypeProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +14,10 @@ class IndexController extends AbstractController
     /**
      * @Route("/", methods={"GET", "POST"}, name="app")
      */
-    public function index(Request $request, PersistAuthFlexTypeProvider $authFlexTypeProvider): Response
+    public function index(Request $request, PersistFlexAuthTypeProvider $flexAuthTypeProvider): Response
     {
         if ($request->isMethod("POST")) {
-            $authFlexTypeProvider->set($request->get('type'));
+            $flexAuthTypeProvider->set($type = $request->get('type'), $request->get('encoder'));
         }
 
         $token = $this->get('security.token_storage')->getToken();
@@ -29,9 +29,15 @@ class IndexController extends AbstractController
 
         return $this->render('index.html.twig', [
             'user' => $user,
-            'types' => $authFlexTypeProvider->types,
-            'selectedType' => $authFlexTypeProvider->provide(),
-            'isJWT' => $request->query->get('jwt')
+            'types' => $flexAuthTypeProvider->types,
+            'selectedType' => $flexAuthTypeProvider->provide(),
+            'isJWT' => $request->query->get('jwt'),
+            'encoders' => [
+                'plaintext',
+                'pbkdf2',
+                'argon2i',
+                'plain'
+            ]
         ]);
     }
 }

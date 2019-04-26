@@ -3,15 +3,15 @@
 namespace App\FlexAuth;
 
 use App\Entity\User;
-use FlexAuth\AuthFlexTypeProviderFactory;
-use FlexAuth\AuthFlexTypeProviderInterface;
+use FlexAuth\FlexAuthTypeProviderFactory;
+use FlexAuth\FlexAuthTypeProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class PersistAuthFlexTypeProvider
+ * Class PersistFlexAuthTypeProvider
  * @author Aleksandr Arofikin <sashaaro@gmail.com>
  */
-class PersistAuthFlexTypeProvider implements AuthFlexTypeProviderInterface
+class PersistFlexAuthTypeProvider implements FlexAuthTypeProviderInterface
 {
     public $types = [
         'memory' => 'memory?users=alice:4l1c3:ROLE_ADMIN;ROLE_EXAMPLE,bob:b0b:ROLE_EXAMPLE)',
@@ -37,17 +37,22 @@ class PersistAuthFlexTypeProvider implements AuthFlexTypeProviderInterface
         }
 
         if (!$typeKey) {
-            $typeKey = 'memory';
+            $typeKey = 'memory|argon2i';
         }
 
-        return AuthFlexTypeProviderFactory::resolveParamsFromLine($this->types[$typeKey]);
+        [$typeKey, $encoder] = explode('|', $typeKey);
+
+        $params = FlexAuthTypeProviderFactory::resolveParamsFromLine($this->types[$typeKey]);
+        $params['encoder'] = $encoder;
+
+        return $params;
     }
 
-    public function set($typeKey)
+    public function set($typeKey, $encoder = null)
     {
         if (!in_array($typeKey, array_keys($this->types))) {
             throw new \InvalidArgumentException(sprintf('No flex type %s', $typeKey));
         }
-        file_put_contents($this->filePath, $typeKey);
+        file_put_contents($this->filePath, $typeKey.'|'.$encoder);
     }
 }
