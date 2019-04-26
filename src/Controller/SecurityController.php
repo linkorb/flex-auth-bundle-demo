@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\FlexAuth\PersistAuthFlexTypeProvider;
+use App\FlexAuth\PersistFlexAuthTypeProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +13,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils, PersistAuthFlexTypeProvider $authFlexTypeProvider): Response
+    public function login(AuthenticationUtils $authenticationUtils, PersistFlexAuthTypeProvider $flexAuthTypeProvider): Response
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -23,7 +23,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'type' => $authFlexTypeProvider->provide()['type']
+            'type' => $flexAuthTypeProvider->provide()['type']
         ]);
     }
 }
