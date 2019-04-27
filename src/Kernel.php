@@ -2,7 +2,8 @@
 
 namespace App;
 
-use App\FlexAuth\PersistAuthFlexTypeProvider;
+use App\FlexAuth\PersistFlexAuthTypeProvider;
+use FlexAuth\FlexAuthTypeProviderInterface;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -11,7 +12,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
-use FlexAuth\AuthFlexTypeProviderInterface;
 
 class Kernel extends BaseKernel implements CompilerPassInterface
 {
@@ -52,8 +52,8 @@ class Kernel extends BaseKernel implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        $container->getDefinition(AuthFlexTypeProviderInterface::class)
-            ->setClass(PersistAuthFlexTypeProvider::class)
+        $container->getDefinition(FlexAuthTypeProviderInterface::class)
+            ->setClass(PersistFlexAuthTypeProvider::class)
             ->setFactory(null)
             ->setArgument(0, new Reference('service_container'))
         ;
