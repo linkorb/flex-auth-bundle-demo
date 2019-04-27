@@ -17,13 +17,25 @@
             Logged user as {{ user.username }}. <a href="/logout">Logout</a>
         {% else %}
             <form action="/" method="POST">
-                Select flex auth type
-                <select name="type" onchange="event.target.parentElement.submit()">
-                    <option></option>
-                    {% for key, type in types %}
-                        <option value="{{ key }}">{{ key }}</option>
-                    {% endfor %}
-                </select>
+                <div>
+                    Select flex auth type
+                    <select name="type" onchange="event.target.closest('form').submit()">
+                        <option></option>
+                        {% for key, type in types %}
+                            <option {% if selectedType.type == key %}selected {% endif %}value="{{ key }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    Password encoder
+                    <select name="encoder" onchange="event.target.closest('form').submit()">
+                        <option></option>
+                        {% for encoder in encoders %}
+                            <option {% if selectedType.encoder == encoder %}selected {% endif %} value="{{ encoder }}">{{ encoder }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </form>
 
             <div>
